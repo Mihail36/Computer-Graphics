@@ -1,0 +1,24 @@
+.bounce {
+    animation: bounce 0.5s infinite alternate ease-out;
+}
+
+.first-letter {
+    animation-delay: 0.1s;
+}
+
+.second-letter {
+    animation-delay: 0.3s;
+}
+
+.third-letter {
+    animation-delay: 0.5s;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-40px);
+    }
+}
