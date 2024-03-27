@@ -1,0 +1,106 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(19, 72, 170);
+}   
+
+.game-border {
+    width: 850px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    padding: 50px 30px;
+    border-radius: 30px;
+    background-color: white;
+}
+.display-box {
+    display: grid;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.action-box {
+    display: grid;
+    max-width: 500px;
+    gap: 10px;
+    text-align: center;
+}
+
+.keyboard button {
+    color:#fff;
+    background-color: blue;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+    margin: 2px;
+}
+
+.keyboard .alphabet:hover {
+    color: #000;
+    background-color: aqua;
+}
+
+.word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+}
+
+.word .letter {
+    border-bottom: 4px solid #000;
+    width: 20px;
+}
+
+.word .letter.guessed {
+    margin: -18px 0 0px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lives {
+    display: grid;
+}
+
+.lives .hearts{
+    display: flex;
+    justify-content: center;
+    gap:5px;
+}
+
+.lives .hearts .heart {
+    width: 50px;
+    background-color: transparent;
+}
+
+.resultContent {
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+.resultContent button{
+    color:#fff;
+    background-color: blue;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    text-align: center;
+    height: 30px;
+    margin: 2px;
+}
+.resultContent button:hover {
+    color: #000;
+    background-color: aqua;
+}
+.gifs {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 250px;
+    max-height: 200px;
+}

@@ -4,25 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cartman</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
 <body>
     <div id="image">
-        <svg id="svg" width="1000" height="700" fill="none" draggable="true">
+        <svg id="svg" width="500" height="450" fill="none" draggable="true">
             <g class="feet">
-                <path d="M50, 330 95, 430 425, 430 470, 330" fill="#4a2301" stroke-linecap="round"/>
+                <path d="M50, 330 95, 430 425, 430 470, 330" fill="#4a2301" />
                 <ellipse rx="100" ry="13" cx="160" cy="430" fill="#242323" />
                 <ellipse rx="100" ry="13" cx="370" cy="430" fill="#242323" />
             </g>
             <g class="body">
-                <path d="M30,400 Q26,153 255,130 Q490,173 494,400 30,400" fill="#DC143C" stroke-linecap="round"/>
-                <circle r="40" cx="60" cy="310" fill="#FFFF00" />
-                <circle r="16" cx="90" cy="295" fill="#FFFF00" stroke="#696969" stroke-width="1" style="opacity:1"/>
+                <path d="M30,400 Q26,153 255,130 Q490,173 494,400 30,400" fill="#DC143C" />
+                <circle class="hands bounce" r="40" cx="60" cy="310" fill="#FFFF00" />
+                <circle class="hands bounce" r="16" cx="90" cy="295" fill="#FFFF00" stroke="#696969" stroke-width="1" style="opacity:1"/>
                 <path d="M90,279 Q70,280 76,304 Q94,317 102,307" />
-                <circle r="40" cx="460" cy="310" fill="#FFFF00" />
-                <circle r="15" cx="425" cy="295" fill="#FFFF00" stroke="#696969" stroke-width="1" style="opacity:1"/>
+                <circle class="hands bounce" r="40" cx="460" cy="310" fill="#FFFF00" />
+                <circle class="hands bounce" r="15" cx="425" cy="295" fill="#FFFF00" stroke="#696969" stroke-width="1" style="opacity:1"/>
             </g>
-            <g class="head">
+            <g class="head bounce">
                 <ellipse rx="180" ry="145" cx="255" cy="160" fill="#ffdfc4" transform="rotate(175 255 160)"/>
                 <ellipse rx="47" ry="55" cx="205" cy="145" fill="#ffff" transform="rotate(40 205 145)"/>
                 <circle r="6" cx="230" cy="145" fill="#000000" />
@@ -31,9 +32,9 @@
                 <path d="M227,235 Q255,250 280,239" stroke="#000000" stroke-width="2"/>
                 <path d="M210,255 Q255,285 300,255" stroke="#000000" stroke-width="0.5" style="opacity:1"/>
                 <path d="M100,200 Q255,400 400,200" stroke="#000000" stroke-width="0.5" style="opacity:1"/>
-                <path d="M89,108 Q121,28 255,15 Q372,17 427,108 Q255,70 89,108" fill="#20B2AA" stroke-linecap="round"/>
-                <path d="M89,108 Q255,65 427,108" stroke="yellow" stroke-width="7" stroke-linecap="round"/>
-                <path d="M235,20 Q240,35 255,20 Q260,35 275,25 Q280,35 295,25 Q280,15 275,15 Q265,15 255,15 Q240,15 235,20" fill="yellow" stroke-linecap="round"/>
+                <path d="M89,108 Q121,28 255,15 Q372,17 427,108 Q255,70 89,108" fill="#20B2AA" />
+                <path d="M89,108 Q255,65 427,108" stroke="yellow" stroke-width="7" />
+                <path d="M235,20 Q240,35 255,20 Q260,35 275,25 Q280,35 295,25 Q280,15 275,15 Q265,15 255,15 Q240,15 235,20" fill="yellow" />
             </g>
         </svg>
     </div>

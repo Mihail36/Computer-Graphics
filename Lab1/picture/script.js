@@ -1,5 +1,5 @@
-const pageWidth = 1920
-const pageHeight = 1080
+const pageWidth = 1480//привязать к окнам браузера
+const pageHeight = 730
 
 function dragAndDrop(element)
 {
