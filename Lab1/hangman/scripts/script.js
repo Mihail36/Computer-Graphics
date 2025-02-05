@@ -1,17 +1,29 @@
+//Сделать так, чтобы не промаргивало(Done)
+//Избавиться от глобальных переменных, разделить логику и визуализацию игры
+//Чтобы уже появлющиеся слова не показывались
+
 let countTries = 0;
 let correctLettersCount = 0;
 let lastHangmanCount = 0;
 let secretWord;
 let gameStatus = "None";
 
+//получение рандомного числа
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
+//получение слова и подсказки
 function getWordAndTip() {
-    const {word, tip} = wordsAndTips[getRandomNumber(0, wordsAndTips.length)];
+    let saveWordsAndTips = [];
+    saveWordsAndTips = wordsAndTips;
+    const {word, tip} = saveWordsAndTips[getRandomNumber(0, saveWordsAndTips.length)]
+    const actionBox = document.querySelector('.action-box');
+    const displayBox = document.querySelector('.display-box');
 
-    const insertWord = document.querySelector('.word');
+    const insertWord = document.createElement('div');
+    insertWord.className = 'word';
+    insertWord.id = 'word';
     for (item in word) {
         const letter = document.createElement("li");
         letter.className = "letter";
@@ -20,18 +32,46 @@ function getWordAndTip() {
 
     secretWord = word;
     
-    const insertTip = document.getElementById('tip');
+    const insertTip = document.createElement('div');
+    insertTip.id = 'tip';
     const tipInDoc = document.createElement("h2");
     tipInDoc.textContent = "Подсказка: " + tip;
     insertTip.appendChild(tipInDoc);
 
+    console.log(insertWord);
+    displayBox.appendChild(insertWord);
+    actionBox.appendChild(insertTip);
+    return saveWordsAndTips;
 }
 
+//отрисовка стартовой игровой доски
 function startGame() {
+
+    const body = document.querySelector('body');
+    const gameBorder = document.createElement('div');
+    const displayBox = document.createElement('div');
+    const hangman = document.createElement('img');
+    const actionBox = document.createElement('div');
+    gameBorder.className = 'game-border';
+    displayBox.className = 'display-box';
+    displayBox.id = 'display-box';
+    hangman.id = 'hangman';
+    hangman.src = 'images/hangman_0.svg';
+    actionBox.className = 'action-box';
+    gameBorder.appendChild(displayBox);
+    gameBorder.appendChild(actionBox);
+    body.appendChild(gameBorder);
+    let saveWordsAndTips = getWordAndTip();
     
-    getWordAndTip();
-    
-    const keyboard = document.querySelector('.keyboard');
+    console.log(saveWordsAndTips);
+    saveWordsAndTips.splice(0, 1);
+    console.log(saveWordsAndTips);
+
+    displayBox.appendChild(hangman);
+
+    const keyboard = document.createElement('div');
+    keyboard.className = 'keyboard';
+    keyboard.id = 'keyboard';
     const alphabet = "абвгдежзийклмнопрстуфхцчшщъыьэюя";
     for (let i = 0; i < alphabet.length; i++) {
         const button = document.createElement('button');
@@ -40,14 +80,28 @@ function startGame() {
         keyboard.appendChild(button);
     }
 
-    const hearts = document.querySelector('.hearts');
-    const lives = 7;
-    for (let i = 0; i < lives; i++) {
+    const lives = document.createElement('div');
+    lives.className = 'lives';
+    const textLives = document.createElement('h2');
+    textLives.textContent = 'Жизни:';
+    const hearts = document.createElement('div');
+    hearts.className = 'hearts';
+    hearts.id = 'hearts';
+    const heartsCount = 7;
+    for (let i = 0; i < heartsCount; i++) {
         const heart = document.createElement('img');
         heart.src = "images/heart.svg";
         heart.className = "heart";
         hearts.appendChild(heart);
     }
+    lives.appendChild(textLives);
+    lives.appendChild(hearts);
+
+    actionBox.appendChild(keyboard);
+    actionBox.appendChild(lives);
+    gameBorder.appendChild(displayBox);
+    gameBorder.appendChild(actionBox);
+    body.appendChild(gameBorder);
 
     const clickButton = document.querySelectorAll('.alphabet');
 
@@ -58,11 +112,14 @@ function startGame() {
     }); 
 }
 
+//вся логика работы с буквами и отрисовкой виселицы.
 function insertLetter()
 {
     
+    const hearts = document.getElementById('hearts');
     let correctLetter = false;
     const uniqueLettersCount = new Set(secretWord).size;
+    console.log(lives, correctLettersCount, countTries, uniqueLettersCount);
     for (item in secretWord) {
 
         if (this.innerHTML == secretWord[item]) {
@@ -77,13 +134,9 @@ function insertLetter()
 
     if (!correctLetter) {
         const lastHangman = document.getElementById('hangman');
-        const newHangman = document.createElement('img');
-        const word = document.getElementById('word');
-        displayBox.removeChild(lastHangman);
         lastHangmanCount++;
-        newHangman.src = 'images/hangman_' + lastHangmanCount + '.svg';
-        newHangman.id = 'hangman';
-        displayBox.appendChild(newHangman);
+        lastHangman.src = 'images/hangman_' + lastHangmanCount + '.svg';
+        console.log(hearts.lastElementChild);
         hearts.removeChild(hearts.lastElementChild);
         countTries++;
     }
@@ -111,12 +164,12 @@ function insertLetter()
         failureImg.src = 'gifs/defeat_' + getRandomNumber(1, 4) + '.gif';
         failureImg.className = 'gifs';
         buttonResult.textContent = "Заново";
-        buttonResult.className = 'buttonResult'
+        buttonResult.className = 'buttonResult';
+        result.className = 'resultContent';
         result.appendChild(failureText);
         result.appendChild(secretWordText);
         result.appendChild(failureImg);
         result.appendChild(buttonResult);
-        result.className = 'resultContent';
         gameBorder.appendChild(result);
 
         const clickButton = document.querySelectorAll('.buttonResult');
@@ -156,13 +209,19 @@ function insertLetter()
     }
 }
 
+//перезагрузка игры
 function refreshGame () {
-    location.reload();
+    const body = document.querySelector('body');
+    body.innerHTML = '';
+    const lives = hearts.childElementCount;
+    countTries = 0;
+    correctLettersCount = 0;
+    lastHangmanCount = 0;
+    secretWord;
+    gameStatus = "None";
+    startGame(lives);
 }
 
 startGame();
 
-const hearts = document.getElementById('hearts');
-const displayBox = document.getElementById('display-box');
-const lives = hearts.childElementCount;
 
